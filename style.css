@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+ background-image:url("C:/wamp64/www/ragavresturant/myimage/hotel 1.jpg");
+}
+/* Navbar */
+.navbar {
+    background: #c0392b;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.logo span {
+    color:blue;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.nav-links a {
+    margin-left: 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+    height: 75vh;
+    background: url('images/family-food-bg.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color:black;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.hero-content span {
+    color:red;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin: 15px 0;
+color:white;
+}
+
+.btn {
+    background:cyan;
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #fff;
+}
+
+/* Highlights Section */
+.highlights {
+    padding: 50px 40px;
+    text-align: center;
+}
+
+.highlights h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.card {
+    width: 300px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin-top: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* About */
+.about {
+    background: #f7f7f7;
+    padding: 40px;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 30px;
+}
+
+.about p {
+    margin-top: 15px;
+    font-size: 18px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Footer */
+footer {
+    background:cyan;
+    color:black;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 40px;
+}

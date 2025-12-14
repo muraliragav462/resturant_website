@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background:#66ffff; 
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#5959ff;
+  padding: 15px 25px;
+  color:black;
+  font-size: 20px;
+}
+
+nav a {
+  color:black;
+  margin-left: 15px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Order Section */
+.order-section {
+  text-align: center;
+  margin: 40px;
+}
+
+.order-card {
+  background:#ff753d;
+  width: 60%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+}
+
+#cartItems {
+  list-style: none;
+  padding: 0;
+}
+
+#cartItems li {
+  background: #fff1cc;
+  padding: 12px;
+  font-size: 18px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+/* Empty cart message */
+#emptyMsg {
+  font-size: 18px;
+  color: #555;
+  display: none;
+}
+
+/* Button */
+.order-btn {
+  background: #ff7a00;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  margin-top: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.order-btn:hover {
+  background: #e56a00;
+}
+
+/* Mobile Responsive */
+@media(max-width: 768px){
+  .order-card {
+    width: 90%;
+  }
+}
