@@ -1,0 +1,60 @@
+ 
+<html>
+ <head>
+<title>Ragava Resturant/menu</title>
+<link rel="stylesheet" href="menu.css">
+<style>
+
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">RAGAVAS FAST FOOD</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="order.html">Order</a>
+  </div>
+</nav>
+<h2 style="text-align:center;color:#000099;">Our Menu</h2>
+<div class="menu-grid">
+  <div class="menu-item">
+    <img src="./myimage/burger2.jfif" alt="burger">
+    <h3>Burger</h3>
+    <p>Rs:120</p>
+    <button onclick="addToCart('Burger Rs:120')">Add to Cart</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="./myimage/pizza.png" alt="Pizza">
+    <h3>Pizza</h3>
+    <p>Rs:250</p>
+    <button onclick="addToCart('Pizza Rs:250')">Add to Cart</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="./myimage/fried chicken.jpg" alt="Fried Chicken">
+    <h3>Fried Chicken</h3>
+    <p>Rs:180</p>
+    <button onclick="addToCart('Fried Chicken Rs:180')">Add to Cart</button>
+  </div>
+</div>
+script src="menu.js"></script>
+<script>
+ function addToCart(item){
+ let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let name =  item.split("Rs:")[0].trim();
+let price = parseInt(item.split("Rs:")[1].trim());
+cart.push({name:name,price:price});
+localStorage.setItem("cart",JSON.stringify(cart));
+alert(name + "Item Aadded to Cart!");
+}
+
+</script>
+
+</body>
+</html>
+
+    

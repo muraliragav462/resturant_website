@@ -1,0 +1,292 @@
+<html>
+<head>
+<title>Ragavas Resturant</title>
+<link rel="stylesheet" href="order.css">
+<style>
+body{
+  font-family:Arial;
+  padding:20px;
+}
+.cart-box{
+ width:60%;
+ margin:auto;
+ padding:20px;
+ border:2px solid #000099;
+ border-radius:10px;
+}
+table{
+ width:100%;
+ border-collapse:collapse;
+ margin-top:10px;
+}
+table,th,td{
+  border:1px solid black;
+  padding:12px 25px;
+}
+th{
+  background:#000099;
+  color:white;
+}
+#payBtn{
+ background:green;
+ color:white;
+ padding:12px 25px;
+ border:none;
+ font-size:18px;
+ border-radius:8px;
+ margin-top:20px;
+}
+#clearBtn{
+ background:red;
+ color:white;
+ padding:12px 25px;
+ border:none;
+ font-size:18px;
+ border-radius:8px;
+ margin-top:20px;
+}
+.payment-box{
+    width: 350px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0px 0px 15px rgba(0,0,0,0.3);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display:none;
+    z-index: 1000;
+}
+
+.payment-box input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+#payConfirmBtn{
+    width:100%;
+    padding:12px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    margin-top:10px;
+}
+
+#payCancelBtn{
+    width:100%;
+    padding:12px;
+    background:red;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    margin-top:10px;
+}
+
+.card-box, .upi-box{
+    display:none;
+    margin-top:10px;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">RAGAVAS FAST FOOD</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="order.html">Order</a>
+    <a href="admin.html">Admin</a>
+  </div>
+</nav>
+
+<h2 style="text-align:center; color:#000099;">Your Order Summary</h2>
+
+<div class="cart-box">
+
+<table>
+<tr>
+<th>Item</th>
+<th>Price</th>
+<th>Delete</th>
+</tr>
+<tbody id="cartItems"></tbody>
+</table>
+
+<button id="payBtn" onclick="payNow()">Proceed To Pay</button>
+<button id="clearBtn" onclick="clearCart()">Clear Cart</button>
+</div>
+<p>Total Amount: Rs:<span id="totalAmount">0</span></p>
+
+<!-- Payment Section (Hidden initially) -->
+<div id="paymentBox" class="payment-box">
+    <h3>Select Payment Method</h3>
+
+    <label><input type="radio" name="paymethod" value="cash" checked> Cash on Delivery</label><br><br>
+
+    <label><input type="radio" name="paymethod" value="card"> Debit Card</label>
+
+    <div id="cardDetails" class="card-box">
+        <input type="text" placeholder="Card Number (16 digits)" id="cardNo" maxlength="16">
+        <input type="text" placeholder="MM/YY" id="cardExpiry" maxlength="5">
+        <input type="password" placeholder="CVV" id="cardCVV" maxlength="3">
+    </div>
+
+    <label><input type="radio" name="paymethod" value="upi"> UPI</label>
+    <div id="upiDetails" class="upi-box">
+        <input type="text" placeholder="Enter UPI ID (example@upi)" id="upiId">
+    </div>
+
+    <button id="payConfirmBtn" onclick="confirmPayment()">Pay Now</button>
+    <button id="payCancelBtn" onclick="closePayment()">Cancel</button>
+</div>
+<form action="paytm/pay.php" method="POST">
+<input type="hidden" name="amount" id="amountToPay">
+<button style= "
+  background:#00baf2;
+  padding:12px 20px;
+  font-size:18px;
+    border:none;
+border-radius:8px;
+ color:white;
+  cursor:pointer;">Pay With Paytm(test Mode)</button>
+ </form>
+ 
+
+<script>
+function loadCart(){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let tableBody = document.getElementById("cartItems");
+    let total = 0;
+
+    tableBody.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        total += item.price;
+
+        tableBody.innerHTML += `
+        <tr>
+            <td>${item.name}</td>
+            <td>${item.price}</td>
+            <td>
+                <button onclick="deleteItem(${index})" 
+                style="background:red;color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;">
+                Delete Item
+                </button>
+            </td>
+        </tr>
+        `;
+    });
+
+    document.getElementById("totalAmount").innerText = total;
+}
+
+// Delete item
+function deleteItem(index){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.splice(index, 1);  // Remove selected item
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    loadCart(); // Refresh
+}
+
+function clearCart(){
+    localStorage.removeItem("cart");
+    document.getElementById("cartItems").innerHTML = "";
+    document.getElementById("totalAmount").innerText = "0";
+    alert("Cart cleared successfully!");
+}
+//open payment box
+function payNow(){
+    let total = parseInt(document.getElementById("totalAmount").innerText);
+
+    if(total === 0){
+        alert("Your cart is empty!");
+        return;
+    }
+    
+  document.getElementById("paymentBox").style.display = "block";
+}
+
+//close payment popup
+function closePayment(){
+document.getElementById("paymentBox").style.display = "none";
+}
+
+
+// Show payment box
+function payNow(){
+    let total = parseInt(document.getElementById("totalAmount").innerText);
+    if(total === 0){
+        alert("Your cart is empty!");
+        return;
+    }
+    document.getElementById("paymentBox").style.display = "block";
+}
+
+// Close payment box
+function closePayment(){
+    document.getElementById("paymentBox").style.display = "none";
+}
+
+
+// Show selected method card/upi fields based on selection
+document.addEventListener("change", function(){
+    let method = document.querySelector("input[name='paymethod']:checked").value;
+
+    document.querySelector(".card-box").style.display = (method === "card") ? "block" : "none";
+    document.querySelector(".upi-box").style.display = (method === "upi") ? "block" : "none";
+});
+
+// Final payment confirmation
+function confirmPayment(){
+    let method = document.querySelector("input[name='paymethod']:checked").value;
+    let total = document.getElementById("totalAmount").innerText;
+
+    if(method === "card"){
+        let no = document.getElementById("cardNo").value;
+        let exp = document.getElementById("cardExpiry").value;
+        let cvv = document.getElementById("cardCVV").value;
+
+        if(no.length !== 16 || cvv.length !== 3){
+            alert("Enter valid card information!");
+            return;
+        }
+    }
+
+    if(method === "upi"){
+        let upi = document.getElementById("upiId").value;
+        if(upi.trim() === ""){
+            alert("Enter your UPI ID!");
+            return;
+        }
+    }
+
+    alert("Payment Successful! Rs:" + total + " paid.");
+
+    localStorage.removeItem("cart");
+    window.location.href = "index.html";
+}
+document.getElementById("amountToPay").value =
+document.getElementById("totalAmount").innerText;
+   
+
+loadCart();
+
+</script>
+
+</body>
+</html>
