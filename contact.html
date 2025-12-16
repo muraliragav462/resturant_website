@@ -1,7 +1,92 @@
-<!-- ==================== contact.html ==================== -->
-<h1>contact.html</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Family Fast Food</title>
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:#f8f8f8;
+    }
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:12px 20px;
+      background:#222;
+    }
+    nav .logo{
+      color:#ff7a00;
+      font-size:22px;
+      font-weight:bold;
+    }
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      margin-left:15px;
+      font-size:15px;
+    }
+    nav a:hover{
+      color:#ff7a00;
+    }
+    .container{
+      max-width:900px;
+      margin:30px auto;
+      background:#fff;
+      padding:25px;
+      border-radius:10px;
+      box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+    h2{
+      color:#ff7a00;
+      margin-bottom:15px;
+    }
+    .contact-info p{
+      font-size:16px;
+      margin:8px 0;
+    }
+    .contact-form{
+      margin-top:25px;
+    }
+    .contact-form input,
+    .contact-form textarea{
+      width:100%;
+      padding:10px;
+      margin:8px 0;
+      border:1px solid #ccc;
+      border-radius:5px;
+      font-size:15px;
+    }
+    .contact-form button{
+      background:#ff7a00;
+      color:#fff;
+      border:none;
+      padding:10px 20px;
+      font-size:16px;
+      border-radius:5px;
+      cursor:pointer;
+    }
+    .contact-form button:hover{
+      background:#e96b00;
+    }
+    .map{
+      margin-top:25px;
+    }
+    footer{
+      text-align:center;
+      padding:12px;
+      background:#222;
+      color:#fff;
+      margin-top:30px;
+    }
+  </style>
+</head>
+<body>
+
 <nav>
-  <div class="logo">🍔 FAMILY FAST FOOD</div>
+  <div class="logo">🍔RAJAVS FAMILY FAST FOOD</div>
   <div>
     <a href="index.html">Home</a>
     <a href="menu.html">Menu</a>
@@ -10,10 +95,51 @@
     <a href="order.html">Order</a>
   </div>
 </nav>
-<div style="padding:20px;">
-  <h2 style="color:#ff7a00;">Contact Us</h2>
-  <p>📍 Address: Your Restaurant Address</p>
-  <p>📞 Phone: 9876543210</p>
-  <p>📧 Email: yourmail@gmail.com</p>
+
+<div class="container">
+  <h2>Contact Us</h2>
+
+  <div class="contact-info">
+    <p>📍 <strong>Address:</strong> Ragavs Fast Food Resturant</p>
+    <p>📞 <strong>Phone:</strong> <a href="tel:9883545676">9883545676</a></p>
+    <p>📧 <strong>Email:</strong> <a href="mailto:murali783@gmail.com">muralidharan633@gmail.com</a></p>
+  </div>
+
+  <div class="contact-form">
+    <h3>Send us a message</h3>
+    <form submit="sendMessage()" return false;">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea rows="4" id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Via Whatsapp Message</button>
+    </form>
+  </div>
+
+  <div class="map">
+    <h3>📍 Our Location</h3>
+    <iframe 
+      src="https://www.google.com/maps?q=velampatti&output=embed" 
+      width="100%" 
+      height="250" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy">
+    </iframe>
+  </div>
 </div>
+
 <footer>© 2025 Family Fast Food</footer>
+<script>
+  function sendMessage(){
+ var name = document.getElementById('name').value;
+var email = document.getElementById('email').value;
+var message = document.getElementById('message').value;
+var text = `Helo Ragavas Resturant ,%0A%0AName:${name}%0AEmail:${email}%0AMessage:${message}`;
+var phoneNumber = "9883545676";
+var url= `https://wa.me/${phoneNumber}?text=${text}`;
+window.open(url,'_blank');
+}
+</script>
+
+</body>
+</html>
