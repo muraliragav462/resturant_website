@@ -4,10 +4,7 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-body{
- background-image:url("C:/wamp64/www/ragavresturant/myimage/hotel 1.jpg");
-}
-/* Navbar */
+
 .navbar {
     background: #c0392b;
     padding: 15px 40px;
@@ -164,3 +161,4 @@ footer {
     font-size: 16px;
     margin-top: 40px;
 }
+
