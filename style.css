@@ -5,6 +5,7 @@
     font-family: "Poppins", sans-serif;
 }
 
+/* Navbar */
 .navbar {
     background: #c0392b;
     padding: 15px 40px;
@@ -161,4 +162,3 @@ footer {
     font-size: 16px;
     margin-top: 40px;
 }
-
